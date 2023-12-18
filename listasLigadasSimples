@@ -1,0 +1,87 @@
+public class UsaLista {
+    public static void main(String[] args) {
+    ListaSimple lista = new ListaSimple();
+    
+    lista.insertaNodo("A");
+    lista.imprimir();
+    
+    System.out.println("\n");
+    
+    lista.insertaAntesUltimoNodo("B");
+    lista.imprimir();
+}
+}
+
+public class ListaSimple {
+    Node top;
+    public boolean insertaNodo(String dato) {
+      if (top == null) { //La lista no está vacía
+           top = new Node();
+           top.name = dato;
+           top.next = null;
+           return true;
+        }
+        else {
+           return false;
+        }
+    }
+    
+    /*
+    public void buscaNodo(int posicion) {
+        Node temp;
+        temp = top;
+        
+        while((temp != null) && temp.equals(posicion) == false) {
+            temp = temp.next;
+        }
+        
+        if (temp != null) {
+            System.out.println(temp);
+            temp = null;
+        }
+    }
+    */
+    
+    public boolean insertaAntesUltimoNodo(String dato) {
+        Node temp;
+        temp = new Node();
+        temp.name = dato;
+        top.next = temp;
+        
+        Node temp2;
+        temp2 = top;
+        while((temp2.next!=null) == false){
+            temp2 = temp2.next;
+        }
+         
+        if (temp2 != null) {
+         temp = temp2;
+         temp = null;
+         temp2 = null;
+         return true;
+        }
+        
+        else {
+            return false;
+        }
+    }
+    
+    /*
+    public void intercambiarNodo(String buscado) {
+        
+    }
+    */
+    
+    public void imprimir() {
+        for (Node temp = this.top; temp != null; temp = temp.next){
+            System.out.print("[" + temp.name + "] -> ");
+        }
+
+        System.out.print("[X]\n"); 
+    }
+}
+
+public class Node {
+    String name; //campo de datos
+    Node next;   //campo enlace
+}
